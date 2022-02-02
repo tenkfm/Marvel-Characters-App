@@ -30,6 +30,12 @@
 		FA34E78027AA0C8D005E6051 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34E77F27AA0C8D005E6051 /* URL.swift */; };
 		FA34E78227AA0DA3005E6051 /* AuthorizationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34E78127AA0DA3005E6051 /* AuthorizationHandler.swift */; };
 		FA34E78427AA1107005E6051 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34E78327AA1107005E6051 /* Bundle.swift */; };
+		FA84BD4C27AAA27E0011ED2E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD4B27AAA27E0011ED2E /* UIImageView.swift */; };
+		FA84BD4F27AABEC80011ED2E /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD4E27AABEC80011ED2E /* Thumbnail.swift */; };
+		FA84BD5427AACF1E0011ED2E /* ComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD5327AACF1E0011ED2E /* ComicsViewController.swift */; };
+		FA84BD5627AACF750011ED2E /* ComicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD5527AACF750011ED2E /* ComicsViewModel.swift */; };
+		FA84BD5827AAD1AF0011ED2E /* ComicsViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD5727AAD1AF0011ED2E /* ComicsViewControllerFactory.swift */; };
+		FA84BD5B27AADF3F0011ED2E /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD5A27AADF3F0011ED2E /* PageInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +83,12 @@
 		FA34E77F27AA0C8D005E6051 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		FA34E78127AA0DA3005E6051 /* AuthorizationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationHandler.swift; sourceTree = "<group>"; };
 		FA34E78327AA1107005E6051 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		FA84BD4B27AAA27E0011ED2E /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		FA84BD4E27AABEC80011ED2E /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		FA84BD5327AACF1E0011ED2E /* ComicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewController.swift; sourceTree = "<group>"; };
+		FA84BD5527AACF750011ED2E /* ComicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewModel.swift; sourceTree = "<group>"; };
+		FA84BD5727AAD1AF0011ED2E /* ComicsViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewControllerFactory.swift; sourceTree = "<group>"; };
+		FA84BD5A27AADF3F0011ED2E /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +169,8 @@
 		FA34E75927A9ABDF005E6051 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA34E75D27A9AC16005E6051 /* Main */,
+				FA34E75D27A9AC16005E6051 /* Characters */,
+				FA84BD5227AACF100011ED2E /* Comics */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,7 +202,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		FA34E75D27A9AC16005E6051 /* Main */ = {
+		FA34E75D27A9AC16005E6051 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
 				FA34E76027A9B590005E6051 /* Views */,
@@ -197,7 +210,7 @@
 				FA34E75E27A9B050005E6051 /* MainViewModel.swift */,
 				FA34E76327A9B750005E6051 /* MainViewControllerFactory.swift */,
 			);
-			path = Main;
+			path = Characters;
 			sourceTree = "<group>";
 		};
 		FA34E76027A9B590005E6051 /* Views */ = {
@@ -222,10 +235,10 @@
 		FA34E76C27A9FA8F005E6051 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA84BD5927AADF2E0011ED2E /* Networking */,
 				FA34E77527AA0624005E6051 /* Errors */,
+				FA84BD4D27AABEB50011ED2E /* Character */,
 				FA34E76D27A9FA9D005E6051 /* MarvelError.swift */,
-				FA34E77127AA02B1005E6051 /* Character.swift */,
-				FA34E77327AA0586005E6051 /* CharactersResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,8 +258,37 @@
 				FA34E77B27AA0A26005E6051 /* String.swift */,
 				FA34E77F27AA0C8D005E6051 /* URL.swift */,
 				FA34E78327AA1107005E6051 /* Bundle.swift */,
+				FA84BD4B27AAA27E0011ED2E /* UIImageView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA84BD4D27AABEB50011ED2E /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				FA34E77327AA0586005E6051 /* CharactersResponse.swift */,
+				FA34E77127AA02B1005E6051 /* Character.swift */,
+				FA84BD4E27AABEC80011ED2E /* Thumbnail.swift */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
+		FA84BD5227AACF100011ED2E /* Comics */ = {
+			isa = PBXGroup;
+			children = (
+				FA84BD5327AACF1E0011ED2E /* ComicsViewController.swift */,
+				FA84BD5527AACF750011ED2E /* ComicsViewModel.swift */,
+				FA84BD5727AAD1AF0011ED2E /* ComicsViewControllerFactory.swift */,
+			);
+			path = Comics;
+			sourceTree = "<group>";
+		};
+		FA84BD5927AADF2E0011ED2E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FA84BD5A27AADF3F0011ED2E /* PageInfo.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,11 +433,17 @@
 				FA34E76627A9BE97005E6051 /* NetworkingService.swift in Sources */,
 				FA34E76E27A9FA9D005E6051 /* MarvelError.swift in Sources */,
 				FA34E77427AA0586005E6051 /* CharactersResponse.swift in Sources */,
+				FA84BD4C27AAA27E0011ED2E /* UIImageView.swift in Sources */,
 				FA34E78227AA0DA3005E6051 /* AuthorizationHandler.swift in Sources */,
+				FA84BD5627AACF750011ED2E /* ComicsViewModel.swift in Sources */,
 				FA34E77827AA06A5005E6051 /* UIAlertController.swift in Sources */,
 				FA34E76827A9C51A005E6051 /* Endpoint.swift in Sources */,
+				FA84BD5427AACF1E0011ED2E /* ComicsViewController.swift in Sources */,
 				FA34E72727A9A7B4005E6051 /* AppDelegate.swift in Sources */,
+				FA84BD5827AAD1AF0011ED2E /* ComicsViewControllerFactory.swift in Sources */,
 				FA34E77C27AA0A26005E6051 /* String.swift in Sources */,
+				FA84BD5B27AADF3F0011ED2E /* PageInfo.swift in Sources */,
+				FA84BD4F27AABEC80011ED2E /* Thumbnail.swift in Sources */,
 				FA34E77027A9FBE8005E6051 /* NetworkErrorHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,6 +619,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7EV2AP75R8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MarvelCharactersApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -599,6 +648,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7EV2AP75R8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MarvelCharactersApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

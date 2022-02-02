@@ -4,12 +4,12 @@
 <dict>
 	<key>MarvelPrivateKey</key>
 	<string>$(MARVEL_PRIVATE_KEY)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>MarvelPublicKey</key>
 	<string>$(MARVEL_PUBLIC_KEY)</string>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-	</dict>
 </dict>
 </plist>

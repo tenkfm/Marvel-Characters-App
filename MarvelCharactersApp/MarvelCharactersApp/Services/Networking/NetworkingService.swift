@@ -28,6 +28,12 @@ final class NetworkingService: NetworkingServiceProtocol {
         handler: @escaping (Result<T, NetworkingError>) -> Void
     ) {
         var url = endpoint.baseUrl.appendingPathComponent(endpoint.url)
+        // Append query parameters
+        if let queryParameters = endpoint.queryParameters {
+            url = url.appending(queryParameters)
+        }
+
+        // Append authorization parameters
         do {
             try url = authorizationHandler.authorizedUrl(url)
         } catch {
