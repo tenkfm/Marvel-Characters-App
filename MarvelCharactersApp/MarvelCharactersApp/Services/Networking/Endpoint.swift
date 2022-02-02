@@ -1,15 +1,20 @@
 import Foundation
 
-protocol EndpointsProtocol {
+protocol EndpointProtocol {
+    var baseUrl: URL { get }
     var url: String { get }
 }
 
-enum Endpoints {
+enum Endpoint {
     case characters
     case comics(characterId: String)
 }
 
-extension Endpoints: EndpointsProtocol {
+extension Endpoint: EndpointProtocol {
+    var baseUrl: URL {
+        URL(string: "https://gateway.marvel.com:443/")!
+    }
+
     var url: String {
         switch self {
         case .characters:
@@ -18,5 +23,4 @@ extension Endpoints: EndpointsProtocol {
             return "/v1/public/characters/\(characterId)/comics"
         }
     }
-
 }
