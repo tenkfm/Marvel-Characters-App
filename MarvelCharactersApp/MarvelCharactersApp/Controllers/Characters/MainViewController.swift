@@ -70,11 +70,15 @@ private extension MainViewController {
 
     func configureStyling() {
         title = "Marvel characters"
+        view.backgroundColor = .backgroundMain
         searchTextField.placeholder = "Search ..."
+        searchTextField.textColor = .textMain
+        searchTextField.backgroundColor = .backgroundMain
         searchTextField.returnKeyType = .search
         searchTextField.borderStyle = .roundedRect
         collectionView.keyboardDismissMode = .onDrag
         collectionView.backgroundColor = view.backgroundColor
+
     }
 
     func configureSubviews() {

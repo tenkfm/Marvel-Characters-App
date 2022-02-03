@@ -30,6 +30,13 @@
 		FA34E78027AA0C8D005E6051 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34E77F27AA0C8D005E6051 /* URL.swift */; };
 		FA34E78227AA0DA3005E6051 /* AuthorizationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34E78127AA0DA3005E6051 /* AuthorizationHandler.swift */; };
 		FA34E78427AA1107005E6051 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34E78327AA1107005E6051 /* Bundle.swift */; };
+		FA3B89AE27AC2A9D0060F811 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89AD27AC2A9D0060F811 /* Comics.swift */; };
+		FA3B89B027AC2B4D0060F811 /* ComicsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89AF27AC2B4D0060F811 /* ComicsResponse.swift */; };
+		FA3B89B327AC2E360060F811 /* NetworkingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89B227AC2E360060F811 /* NetworkingViewModel.swift */; };
+		FA3B89B527AC2F220060F811 /* PageigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89B427AC2F220060F811 /* PageigationViewModel.swift */; };
+		FA3B89B727AC36C60060F811 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3B89B627AC36C60060F811 /* Colors.xcassets */; };
+		FA3B89B927AC38190060F811 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89B827AC38190060F811 /* Color.swift */; };
+		FA3B89BC27AC3A740060F811 /* ComicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89BB27AC3A740060F811 /* ComicsTableViewCell.swift */; };
 		FA84BD4C27AAA27E0011ED2E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD4B27AAA27E0011ED2E /* UIImageView.swift */; };
 		FA84BD4F27AABEC80011ED2E /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD4E27AABEC80011ED2E /* Thumbnail.swift */; };
 		FA84BD5427AACF1E0011ED2E /* ComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD5327AACF1E0011ED2E /* ComicsViewController.swift */; };
@@ -83,6 +90,13 @@
 		FA34E77F27AA0C8D005E6051 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		FA34E78127AA0DA3005E6051 /* AuthorizationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationHandler.swift; sourceTree = "<group>"; };
 		FA34E78327AA1107005E6051 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		FA3B89AD27AC2A9D0060F811 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
+		FA3B89AF27AC2B4D0060F811 /* ComicsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsResponse.swift; sourceTree = "<group>"; };
+		FA3B89B227AC2E360060F811 /* NetworkingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingViewModel.swift; sourceTree = "<group>"; };
+		FA3B89B427AC2F220060F811 /* PageigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageigationViewModel.swift; sourceTree = "<group>"; };
+		FA3B89B627AC36C60060F811 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		FA3B89B827AC38190060F811 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		FA3B89BB27AC3A740060F811 /* ComicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsTableViewCell.swift; sourceTree = "<group>"; };
 		FA84BD4B27AAA27E0011ED2E /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		FA84BD4E27AABEC80011ED2E /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		FA84BD5327AACF1E0011ED2E /* ComicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +183,7 @@
 		FA34E75927A9ABDF005E6051 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA3B89B127AC2E030060F811 /* Common */,
 				FA34E75D27A9AC16005E6051 /* Characters */,
 				FA84BD5227AACF100011ED2E /* Comics */,
 			);
@@ -198,6 +213,7 @@
 				FA34E73227A9A7B7005E6051 /* Assets.xcassets */,
 				FA34E72F27A9A7B4005E6051 /* MarvelCharactersApp.xcdatamodeld */,
 				FA34E73727A9A7B7005E6051 /* Info.plist */,
+				FA3B89B627AC36C60060F811 /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -235,10 +251,11 @@
 		FA34E76C27A9FA8F005E6051 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FA84BD5927AADF2E0011ED2E /* Networking */,
 				FA34E77527AA0624005E6051 /* Errors */,
+				FA84BD5A27AADF3F0011ED2E /* PageInfo.swift */,
+				FA84BD4E27AABEC80011ED2E /* Thumbnail.swift */,
 				FA84BD4D27AABEB50011ED2E /* Character */,
-				FA34E76D27A9FA9D005E6051 /* MarvelError.swift */,
+				FA3B89AC27AC2A8E0060F811 /* Comics */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -247,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				FA34E76A27A9F5FE005E6051 /* NetworkingError.swift */,
+				FA34E76D27A9FA9D005E6051 /* MarvelError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -259,8 +277,35 @@
 				FA34E77F27AA0C8D005E6051 /* URL.swift */,
 				FA34E78327AA1107005E6051 /* Bundle.swift */,
 				FA84BD4B27AAA27E0011ED2E /* UIImageView.swift */,
+				FA3B89B827AC38190060F811 /* Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA3B89AC27AC2A8E0060F811 /* Comics */ = {
+			isa = PBXGroup;
+			children = (
+				FA3B89AF27AC2B4D0060F811 /* ComicsResponse.swift */,
+				FA3B89AD27AC2A9D0060F811 /* Comics.swift */,
+			);
+			path = Comics;
+			sourceTree = "<group>";
+		};
+		FA3B89B127AC2E030060F811 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FA3B89B227AC2E360060F811 /* NetworkingViewModel.swift */,
+				FA3B89B427AC2F220060F811 /* PageigationViewModel.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FA3B89BA27AC3A630060F811 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA3B89BB27AC3A740060F811 /* ComicsTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FA84BD4D27AABEB50011ED2E /* Character */ = {
@@ -268,7 +313,6 @@
 			children = (
 				FA34E77327AA0586005E6051 /* CharactersResponse.swift */,
 				FA34E77127AA02B1005E6051 /* Character.swift */,
-				FA84BD4E27AABEC80011ED2E /* Thumbnail.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -276,19 +320,12 @@
 		FA84BD5227AACF100011ED2E /* Comics */ = {
 			isa = PBXGroup;
 			children = (
+				FA3B89BA27AC3A630060F811 /* Views */,
 				FA84BD5327AACF1E0011ED2E /* ComicsViewController.swift */,
 				FA84BD5527AACF750011ED2E /* ComicsViewModel.swift */,
 				FA84BD5727AAD1AF0011ED2E /* ComicsViewControllerFactory.swift */,
 			);
 			path = Comics;
-			sourceTree = "<group>";
-		};
-		FA84BD5927AADF2E0011ED2E /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				FA84BD5A27AADF3F0011ED2E /* PageInfo.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3B89B727AC36C60060F811 /* Colors.xcassets in Resources */,
 				FA34E73627A9A7B7005E6051 /* LaunchScreen.storyboard in Resources */,
 				FA34E73327A9A7B7005E6051 /* Assets.xcassets in Resources */,
 			);
@@ -423,7 +461,10 @@
 			files = (
 				FA34E76427A9B751005E6051 /* MainViewControllerFactory.swift in Sources */,
 				FA34E78427AA1107005E6051 /* Bundle.swift in Sources */,
+				FA3B89B527AC2F220060F811 /* PageigationViewModel.swift in Sources */,
+				FA3B89BC27AC3A740060F811 /* ComicsTableViewCell.swift in Sources */,
 				FA34E76227A9B5A0005E6051 /* CharacterCollectionViewCell.swift in Sources */,
+				FA3B89B327AC2E360060F811 /* NetworkingViewModel.swift in Sources */,
 				FA34E75F27A9B050005E6051 /* MainViewModel.swift in Sources */,
 				FA34E77227AA02B1005E6051 /* Character.swift in Sources */,
 				FA34E73127A9A7B4005E6051 /* MarvelCharactersApp.xcdatamodeld in Sources */,
@@ -434,12 +475,15 @@
 				FA34E76E27A9FA9D005E6051 /* MarvelError.swift in Sources */,
 				FA34E77427AA0586005E6051 /* CharactersResponse.swift in Sources */,
 				FA84BD4C27AAA27E0011ED2E /* UIImageView.swift in Sources */,
+				FA3B89AE27AC2A9D0060F811 /* Comics.swift in Sources */,
 				FA34E78227AA0DA3005E6051 /* AuthorizationHandler.swift in Sources */,
+				FA3B89B927AC38190060F811 /* Color.swift in Sources */,
 				FA84BD5627AACF750011ED2E /* ComicsViewModel.swift in Sources */,
 				FA34E77827AA06A5005E6051 /* UIAlertController.swift in Sources */,
 				FA34E76827A9C51A005E6051 /* Endpoint.swift in Sources */,
 				FA84BD5427AACF1E0011ED2E /* ComicsViewController.swift in Sources */,
 				FA34E72727A9A7B4005E6051 /* AppDelegate.swift in Sources */,
+				FA3B89B027AC2B4D0060F811 /* ComicsResponse.swift in Sources */,
 				FA84BD5827AAD1AF0011ED2E /* ComicsViewControllerFactory.swift in Sources */,
 				FA34E77C27AA0A26005E6051 /* String.swift in Sources */,
 				FA84BD5B27AADF3F0011ED2E /* PageInfo.swift in Sources */,

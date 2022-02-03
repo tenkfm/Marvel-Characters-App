@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ComicsViewControllerProtocol: AnyObject {
-    func reloadCollection()
+    func reloadTableView()
     func show(error: String)
     func set(title: String)
 }
@@ -24,6 +24,7 @@ final class ComicsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.loadViewTitle()
+        viewModel.fetchComics()
     }
 }
 
@@ -32,7 +33,7 @@ extension ComicsViewController: ComicsViewControllerProtocol {
         UIAlertController.show(error: error, in: self)
     }
 
-    func reloadCollection() {
+    func reloadTableView() {
         tableView.reloadData()
     }
 
@@ -50,7 +51,8 @@ private extension ComicsViewController {
     }
 
     func configureStyling() {
-        tableView.backgroundColor = view.backgroundColor
+        view.backgroundColor = .backgroundMain
+        tableView.backgroundColor = .backgroundMain
     }
 
     func configureSubviews() {
@@ -60,6 +62,7 @@ private extension ComicsViewController {
     func configureDependencies() {
         tableView.dataSource = viewModel
         tableView.delegate = viewModel
+        tableView.register(ComicsTableViewCell.self, forCellReuseIdentifier: "ComicsTableViewCell")
     }
 
     func configureConstraints() {

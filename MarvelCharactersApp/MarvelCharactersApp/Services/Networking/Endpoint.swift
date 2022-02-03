@@ -9,7 +9,7 @@ protocol EndpointProtocol {
 enum Endpoint {
     case characters(pageInfo: PageInfo)
     case searchCaracter(name: String, pageInfo: PageInfo)
-    case comics(characterId: String)
+    case comics(characterId: Int, pageInfo: PageInfo)
 }
 
 extension Endpoint: EndpointProtocol {
@@ -21,14 +21,14 @@ extension Endpoint: EndpointProtocol {
         switch self {
         case .characters, .searchCaracter:
             return "/v1/public/characters"
-        case .comics(let characterId):
+        case .comics(let characterId, _):
             return "/v1/public/characters/\(characterId)/comics"
         }
     }
 
     var queryParameters: [String: String]? {
         switch self {
-        case .characters(let pageInfo):
+        case .characters(let pageInfo), .comics(_, let pageInfo):
             return [
                 "offset": "\(pageInfo.offset)",
                 "limit": "\(pageInfo.limit)"

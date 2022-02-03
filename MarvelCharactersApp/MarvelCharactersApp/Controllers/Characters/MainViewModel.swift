@@ -8,30 +8,24 @@ protocol MainViewModelProtocol: UICollectionViewDataSource, UICollectionViewDele
     func searchCharacters(name: String)
 }
 
-final class MainViewModel: NSObject {
-    enum DataState {
-        case none
-        case idle
-        case loading
-        case caching
-    }
-    private var networkingService: NetworkingServiceProtocol
+final class MainViewModel: PageigationViewModel {
     private var characters: [Character] = []
-    private var currentPageInfo: PageInfo
-    private var dataState: DataState = .none
     private var searchString : String?
 
     weak var view: MainViewControllerProtocol?
 
-    init(networkingService: NetworkingServiceProtocol = NetworkingService(), limit: Int = 50) {
-        self.networkingService = networkingService
-        self.currentPageInfo = PageInfo()
+    override init(networkingService: NetworkingServiceProtocol = NetworkingService(), limit: Int = 50) {
+        super.init(networkingService: networkingService, limit: limit)
+    }
+
+    override func loadMoreData() {
+        fetchMoreCharacters()
     }
 }
 
 extension MainViewModel: MainViewModelProtocol {
     func fetchCharacters() {
-        self.currentPageInfo = PageInfo()
+        resetPageInfo()
         characters = []
         view?.reloadCollection()
         searchString = nil
@@ -41,7 +35,7 @@ extension MainViewModel: MainViewModelProtocol {
     func searchCharacters(name: String) {
         characters = []
         view?.reloadCollection()
-        currentPageInfo = PageInfo()
+        resetPageInfo()
         fetchMoreCharacters()
     }
 
@@ -97,19 +91,6 @@ extension MainViewModel: MainViewModelProtocol {
     }
 }
 
-extension MainViewModel: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y + scrollView.frame.size.height
-        let contentHeight = scrollView.contentSize.height
-        guard contentHeight > 0 else { return }
-
-        if offsetY > contentHeight - scrollView.frame.size.height && dataState != .loading && !currentPageInfo.isLast {
-            currentPageInfo.offset += currentPageInfo.limit
-            fetchMoreCharacters()
-        }
-    }
-}
-
 private extension MainViewModel {
     func fetchMoreCharacters() {
         var endpoint: Endpoint
@@ -118,7 +99,7 @@ private extension MainViewModel {
             print("🌍 Search caracters. Page info: \(currentPageInfo)")
         } else {
             endpoint = .characters(pageInfo: currentPageInfo)
-            print("🌍 Search caracters. Page info: \(currentPageInfo)")
+            print("🌍 Fetch caracters. Page info: \(currentPageInfo)")
         }
 
         dataState = .loading
