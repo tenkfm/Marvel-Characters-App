@@ -41,7 +41,11 @@ final class NetworkingService: NetworkingServiceProtocol {
             return
         }
 
-        dataTask = session.dataTask(with: url, completionHandler: { [unowned self] data, response, error in
+        dataTask = session.dataTask(with: url, completionHandler: { [weak self] data, response, error in
+            guard let self = self else {
+                return
+            }
+
             guard let data = data else {
                 handlerQueue.async { handler(.failure(.noDataAvailable)) }
                 return
@@ -52,8 +56,8 @@ final class NetworkingService: NetworkingServiceProtocol {
                 return
             }
 
-            guard !errorHandler.isErrorOcured(response: httpResponse) else {
-                handlerQueue.async { handler(.failure(errorHandler.handle(response: httpResponse, data: data))) }
+            guard !self.errorHandler.isErrorOcured(response: httpResponse) else {
+                handlerQueue.async { handler(.failure(self.errorHandler.handle(response: httpResponse, data: data))) }
                 return
             }
 

@@ -64,30 +64,30 @@ extension ComicsViewModel: ComicsViewModelProtocol {
 private extension ComicsViewModel {
     func fetchMoreComics() {
         let endpoint = Endpoint.comics(characterId: character.id, pageInfo: currentPageInfo)
-        print("🌍 Fetch caracters. Page info: \(currentPageInfo)")
+        print("🌍 Fetch comics. Page info: \(currentPageInfo)")
 
         dataState = .loading
         self.networkingService.request(
             endpoint: endpoint,
             handlerQueue: .main
-        ) { [unowned self] (result: Result<ComicsResponse, NetworkingError>) in
+        ) { [weak self] (result: Result<ComicsResponse, NetworkingError>) in
             switch result {
             case .success(let response):
                 // Update page info
-                self.currentPageInfo = PageInfo(
+                self?.currentPageInfo = PageInfo(
                     offset: response.data.offset,
                     limit: response.data.limit,
                     total: response.data.total,
                     count: response.data.count
                 )
                 // Update models
-                self.comics.append(contentsOf: response.data.results)
+                self?.comics.append(contentsOf: response.data.results)
                 // Refresh view
-                self.view?.reloadTableView()
-                dataState = .idle
+                self?.view?.reloadTableView()
+                self?.dataState = .idle
             case .failure(let error):
-                self.view?.show(error: error.localizedError)
-                dataState = .idle
+                self?.view?.show(error: error.localizedError)
+                self?.dataState = .idle
             }
         }
     }

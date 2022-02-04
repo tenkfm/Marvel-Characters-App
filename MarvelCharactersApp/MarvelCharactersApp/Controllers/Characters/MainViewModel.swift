@@ -106,24 +106,24 @@ private extension MainViewModel {
         self.networkingService.request(
             endpoint: endpoint,
             handlerQueue: .main
-        ) { [unowned self] (result: Result<CharactersResponse, NetworkingError>) in
+        ) { [weak self] (result: Result<CharactersResponse, NetworkingError>) in
             switch result {
             case .success(let response):
                 // Update page info
-                self.currentPageInfo = PageInfo(
+                self?.currentPageInfo = PageInfo(
                     offset: response.data.offset,
                     limit: response.data.limit,
                     total: response.data.total,
                     count: response.data.count
                 )
                 // Update models
-                self.characters.append(contentsOf: response.data.results)
+                self?.characters.append(contentsOf: response.data.results)
                 // Refresh view
-                self.view?.reloadCollection()
-                dataState = .idle
+                self?.view?.reloadCollection()
+                self?.dataState = .idle
             case .failure(let error):
-                self.view?.show(error: error.localizedError)
-                dataState = .idle
+                self?.view?.show(error: error.localizedError)
+                self?.dataState = .idle
             }
         }
     }
