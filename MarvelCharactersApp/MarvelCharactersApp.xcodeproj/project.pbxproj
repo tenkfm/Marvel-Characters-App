@@ -33,7 +33,7 @@
 		FA3B89AE27AC2A9D0060F811 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89AD27AC2A9D0060F811 /* Comics.swift */; };
 		FA3B89B027AC2B4D0060F811 /* ComicsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89AF27AC2B4D0060F811 /* ComicsResponse.swift */; };
 		FA3B89B327AC2E360060F811 /* NetworkingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89B227AC2E360060F811 /* NetworkingViewModel.swift */; };
-		FA3B89B527AC2F220060F811 /* PageigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89B427AC2F220060F811 /* PageigationViewModel.swift */; };
+		FA3B89B527AC2F220060F811 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89B427AC2F220060F811 /* PageViewModel.swift */; };
 		FA3B89B727AC36C60060F811 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3B89B627AC36C60060F811 /* Colors.xcassets */; };
 		FA3B89B927AC38190060F811 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89B827AC38190060F811 /* Color.swift */; };
 		FA3B89BC27AC3A740060F811 /* ComicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B89BB27AC3A740060F811 /* ComicsTableViewCell.swift */; };
@@ -43,6 +43,8 @@
 		FA84BD5627AACF750011ED2E /* ComicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD5527AACF750011ED2E /* ComicsViewModel.swift */; };
 		FA84BD5827AAD1AF0011ED2E /* ComicsViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD5727AAD1AF0011ED2E /* ComicsViewControllerFactory.swift */; };
 		FA84BD5B27AADF3F0011ED2E /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA84BD5A27AADF3F0011ED2E /* PageInfo.swift */; };
+		FA87E5CF27AD7D5200A78EBF /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87E5CE27AD7D5200A78EBF /* CoreDataService.swift */; };
+		FA87E5D227AD931900A78EBF /* CharacterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87E5D127AD931900A78EBF /* CharacterRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +95,7 @@
 		FA3B89AD27AC2A9D0060F811 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
 		FA3B89AF27AC2B4D0060F811 /* ComicsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsResponse.swift; sourceTree = "<group>"; };
 		FA3B89B227AC2E360060F811 /* NetworkingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingViewModel.swift; sourceTree = "<group>"; };
-		FA3B89B427AC2F220060F811 /* PageigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageigationViewModel.swift; sourceTree = "<group>"; };
+		FA3B89B427AC2F220060F811 /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		FA3B89B627AC36C60060F811 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		FA3B89B827AC38190060F811 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		FA3B89BB27AC3A740060F811 /* ComicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsTableViewCell.swift; sourceTree = "<group>"; };
@@ -103,6 +105,8 @@
 		FA84BD5527AACF750011ED2E /* ComicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewModel.swift; sourceTree = "<group>"; };
 		FA84BD5727AAD1AF0011ED2E /* ComicsViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewControllerFactory.swift; sourceTree = "<group>"; };
 		FA84BD5A27AADF3F0011ED2E /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
+		FA87E5CE27AD7D5200A78EBF /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		FA87E5D127AD931900A78EBF /* CharacterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +197,9 @@
 		FA34E75A27A9ABE6005E6051 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FA87E5CD27AD7D3000A78EBF /* CoreData */,
 				FA34E76927A9F5EF005E6051 /* Networking */,
+				FA87E5D127AD931900A78EBF /* CharacterRepository.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -295,7 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				FA3B89B227AC2E360060F811 /* NetworkingViewModel.swift */,
-				FA3B89B427AC2F220060F811 /* PageigationViewModel.swift */,
+				FA3B89B427AC2F220060F811 /* PageViewModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -326,6 +332,14 @@
 				FA84BD5727AAD1AF0011ED2E /* ComicsViewControllerFactory.swift */,
 			);
 			path = Comics;
+			sourceTree = "<group>";
+		};
+		FA87E5CD27AD7D3000A78EBF /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FA87E5CE27AD7D5200A78EBF /* CoreDataService.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,8 +474,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA34E76427A9B751005E6051 /* MainViewControllerFactory.swift in Sources */,
+				FA87E5D227AD931900A78EBF /* CharacterRepository.swift in Sources */,
 				FA34E78427AA1107005E6051 /* Bundle.swift in Sources */,
-				FA3B89B527AC2F220060F811 /* PageigationViewModel.swift in Sources */,
+				FA3B89B527AC2F220060F811 /* PageViewModel.swift in Sources */,
 				FA3B89BC27AC3A740060F811 /* ComicsTableViewCell.swift in Sources */,
 				FA34E76227A9B5A0005E6051 /* CharacterCollectionViewCell.swift in Sources */,
 				FA3B89B327AC2E360060F811 /* NetworkingViewModel.swift in Sources */,
@@ -477,6 +492,7 @@
 				FA84BD4C27AAA27E0011ED2E /* UIImageView.swift in Sources */,
 				FA3B89AE27AC2A9D0060F811 /* Comics.swift in Sources */,
 				FA34E78227AA0DA3005E6051 /* AuthorizationHandler.swift in Sources */,
+				FA87E5CF27AD7D5200A78EBF /* CoreDataService.swift in Sources */,
 				FA3B89B927AC38190060F811 /* Color.swift in Sources */,
 				FA84BD5627AACF750011ED2E /* ComicsViewModel.swift in Sources */,
 				FA34E77827AA06A5005E6051 /* UIAlertController.swift in Sources */,

@@ -4,14 +4,9 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="text" optional="YES" attributeType="String"/>
-        <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ThumbnailDAO"/>
-    </entity>
-    <entity name="ThumbnailDAO" representedClassName="ThumbnailDAO" syncable="YES" codeGenerationType="class">
-        <attribute name="ext" optional="YES" attributeType="String"/>
-        <attribute name="path" optional="YES" attributeType="String"/>
+        <attribute name="thumbnailUrl" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CharacterDAO" positionX="-54" positionY="-9" width="128" height="89"/>
-        <element name="ThumbnailDAO" positionX="-36" positionY="36" width="128" height="59"/>
+        <element name="CharacterDAO" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>

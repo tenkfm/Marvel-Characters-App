@@ -31,7 +31,8 @@ extension Endpoint: EndpointProtocol {
         case .characters(let pageInfo), .comics(_, let pageInfo):
             return [
                 "offset": "\(pageInfo.offset)",
-                "limit": "\(pageInfo.limit)"
+                "limit": "\(pageInfo.limit)",
+                "orderBy": "name"
             ]
         case .searchCaracter(let name, let pageInfo):
             return [

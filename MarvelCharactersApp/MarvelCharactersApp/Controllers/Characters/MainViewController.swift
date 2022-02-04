@@ -5,6 +5,7 @@ protocol MainViewControllerProtocol: AnyObject {
     func show(error: String)
     func showComics(for character: Character)
     func hideKeyboard()
+    func update(dataStatus: NetworkingViewModel.DataState)
 }
 
 final class MainViewController: UIViewController {
@@ -17,6 +18,7 @@ final class MainViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 2
         return flowLayout
     }()
+    lazy var statusLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 21))
 
     private var comicsViewControllerFactory: ComicsViewControllerFactoryProtocol
     private var viewModel: MainViewModelProtocol
@@ -35,13 +37,17 @@ final class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.fetchCharacters()
     }
 }
 
 extension MainViewController: MainViewControllerProtocol {
+    func update(dataStatus: NetworkingViewModel.DataState) {
+        statusLabel.text = dataStatus.description
+    }
+
     func hideKeyboard() {
         view.endEditing(true)
     }
@@ -70,7 +76,10 @@ private extension MainViewController {
 
     func configureStyling() {
         title = "Marvel characters"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: statusLabel)
         view.backgroundColor = .backgroundMain
+        statusLabel.font = .systemFont(ofSize: 12)
+        statusLabel.textAlignment = .right
         searchTextField.placeholder = "Search ..."
         searchTextField.textColor = .textMain
         searchTextField.backgroundColor = .backgroundMain

@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 struct Thumbnail: Decodable {
     enum Resolution: String {
@@ -15,5 +16,12 @@ struct Thumbnail: Decodable {
 
     func url(of resolution: Resolution) -> String {
         String(format: "%@/%@.%@", path, resolution.rawValue, `extension`)
+    }
+
+    func dao(for managedObjectContext: NSManagedObjectContext) -> ThumbnailDAO {
+        let dao = ThumbnailDAO(context: managedObjectContext)
+        dao.path = path
+        dao.ext = `extension`
+        return dao
     }
 }

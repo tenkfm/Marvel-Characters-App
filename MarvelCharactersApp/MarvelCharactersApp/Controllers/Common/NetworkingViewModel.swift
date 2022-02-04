@@ -5,7 +5,20 @@ class NetworkingViewModel: NSObject {
         case none
         case idle
         case loading
-        case caching
+        case cached
+
+        var description: String {
+            switch self {
+            case .idle:
+                return ""
+            case .cached:
+                return "Cache"
+            case .loading:
+                return "Loading..."
+            case .none:
+                return "No data"
+            }
+        }
     }
     internal var networkingService: NetworkingServiceProtocol
     internal var dataState: DataState = .none

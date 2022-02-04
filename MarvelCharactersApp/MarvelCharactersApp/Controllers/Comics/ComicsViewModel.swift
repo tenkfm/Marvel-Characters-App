@@ -8,7 +8,7 @@ protocol ComicsViewModelProtocol: UITableViewDataSource, UITableViewDelegate {
     func fetchComics()
 }
 
-final class ComicsViewModel: PageigationViewModel {
+final class ComicsViewModel: PageViewModel {
     private let character: Character
     private var comics: [Comics] = []
 

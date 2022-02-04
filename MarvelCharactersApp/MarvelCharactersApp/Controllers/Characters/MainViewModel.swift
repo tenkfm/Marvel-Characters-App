@@ -2,41 +2,48 @@ import Foundation
 import UIKit
 
 protocol MainViewModelProtocol: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
-    /// Remove all cached items and pagination info, ferch characters
+    /// Remove all items and pagination info, ferch characters
     func fetchCharacters()
-    /// Remove all cached items and pagination info, fetch characters with a filter
+    /// Remove all items and pagination info, fetch characters with a filter
     func searchCharacters(name: String)
 }
 
-final class MainViewModel: PageigationViewModel {
+final class MainViewModel: PageViewModel {
     private var characters: [Character] = []
     private var searchString : String?
+    private let characterRepository: CharacterRepositoryProtocol
 
     weak var view: MainViewControllerProtocol?
 
-    override init(networkingService: NetworkingServiceProtocol = NetworkingService(), limit: Int = 50) {
+    init(
+        networkingService: NetworkingServiceProtocol = NetworkingService(),
+        characterRepository: CharacterRepositoryProtocol = CharacterRepository(),
+        limit: Int = 50
+    ) {
+        self.characterRepository = characterRepository
         super.init(networkingService: networkingService, limit: limit)
     }
 
     override func loadMoreData() {
-        fetchMoreCharacters()
+        fetchMoreCharacters(usingCache: false)
     }
 }
 
 extension MainViewModel: MainViewModelProtocol {
     func fetchCharacters() {
+        characterRepository.resetCache()
         resetPageInfo()
         characters = []
         view?.reloadCollection()
         searchString = nil
-        fetchMoreCharacters()
+        fetchMoreCharacters(usingCache: true)
     }
 
     func searchCharacters(name: String) {
         characters = []
         view?.reloadCollection()
         resetPageInfo()
-        fetchMoreCharacters()
+        fetchMoreCharacters(usingCache: false)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,38 +99,33 @@ extension MainViewModel: MainViewModelProtocol {
 }
 
 private extension MainViewModel {
-    func fetchMoreCharacters() {
-        var endpoint: Endpoint
-        if let searchString = self.searchString {
-            endpoint = .searchCaracter(name: searchString, pageInfo: currentPageInfo)
-            print("🌍 Search caracters. Page info: \(currentPageInfo)")
-        } else {
-            endpoint = .characters(pageInfo: currentPageInfo)
-            print("🌍 Fetch caracters. Page info: \(currentPageInfo)")
-        }
-
+    func fetchMoreCharacters(usingCache: Bool) {
         dataState = .loading
-        self.networkingService.request(
-            endpoint: endpoint,
-            handlerQueue: .main
-        ) { [weak self] (result: Result<CharactersResponse, NetworkingError>) in
+        view?.update(dataStatus: dataState)
+        characterRepository.fetchMoreCharacters(
+            currentPageInfo: currentPageInfo
+        ) { [weak self] result in
+
             switch result {
             case .success(let response):
                 // Update page info
                 self?.currentPageInfo = PageInfo(
-                    offset: response.data.offset,
-                    limit: response.data.limit,
-                    total: response.data.total,
-                    count: response.data.count
+                    offset: response.0.data.offset,
+                    limit: response.0.data.limit,
+                    total: response.0.data.total,
+                    count: response.0.data.count
                 )
                 // Update models
-                self?.characters.append(contentsOf: response.data.results)
+                self?.characters = response.0.data.results
                 // Refresh view
                 self?.view?.reloadCollection()
-                self?.dataState = .idle
+                let dataState = response.1 ? NetworkingViewModel.DataState.cached : NetworkingViewModel.DataState.idle
+                self?.dataState = dataState
+                self?.view?.update(dataStatus: dataState)
             case .failure(let error):
                 self?.view?.show(error: error.localizedError)
                 self?.dataState = .idle
+                self?.view?.update(dataStatus: .idle)
             }
         }
     }
