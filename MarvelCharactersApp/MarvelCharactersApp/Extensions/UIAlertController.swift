@@ -19,4 +19,32 @@ extension UIAlertController {
         alertController.addAction(okAction)
         viewController.present(alertController, animated: true, completion: nil)
     }
+
+    static func showNetwork(
+        error: String,
+        in viewController: UIViewController,
+        handler: @escaping () -> Void
+    ) {
+        let alertController = UIAlertController(
+            title: nil,
+            message: error,
+            preferredStyle: .alert)
+
+        let okAction = UIAlertAction(
+            title: "OK",
+            style: .cancel,
+            handler: nil
+        )
+
+        let resendAction = UIAlertAction(
+            title: "Retry",
+            style: .default
+        ) { _ in
+            handler()
+        }
+
+        alertController.addAction(okAction)
+        alertController.addAction(resendAction)
+        viewController.present(alertController, animated: true, completion: nil)
+    }
 }

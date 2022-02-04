@@ -30,7 +30,12 @@ final class ComicsViewController: UIViewController {
 
 extension ComicsViewController: ComicsViewControllerProtocol {
     func show(error: String) {
-        UIAlertController.show(error: error, in: self)
+        UIAlertController.showNetwork(
+            error: error,
+            in: self
+        ) { [weak self] in
+            self?.viewModel.fetchComics()
+        }
     }
 
     func reloadTableView() {

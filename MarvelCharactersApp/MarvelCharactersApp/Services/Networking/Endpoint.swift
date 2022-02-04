@@ -28,11 +28,16 @@ extension Endpoint: EndpointProtocol {
 
     var queryParameters: [String: String]? {
         switch self {
-        case .characters(let pageInfo), .comics(_, let pageInfo):
+        case .characters(let pageInfo):
             return [
                 "offset": "\(pageInfo.offset)",
                 "limit": "\(pageInfo.limit)",
                 "orderBy": "name"
+            ]
+        case .comics(_, let pageInfo):
+            return [
+                "offset": "\(pageInfo.offset)",
+                "limit": "\(pageInfo.limit)"
             ]
         case .searchCaracter(let name, let pageInfo):
             return [

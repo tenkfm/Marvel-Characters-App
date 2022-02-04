@@ -25,7 +25,7 @@ final class MainViewModel: PageViewModel {
     }
 
     override func loadMoreData() {
-        fetchMoreCharacters(usingCache: false)
+        loadMoreCharacters()
     }
 }
 
@@ -36,14 +36,15 @@ extension MainViewModel: MainViewModelProtocol {
         characters = []
         view?.reloadCollection()
         searchString = nil
-        fetchMoreCharacters(usingCache: true)
+        fetchMoreCharacters()
     }
 
     func searchCharacters(name: String) {
         characters = []
         view?.reloadCollection()
         resetPageInfo()
-        fetchMoreCharacters(usingCache: false)
+        searchString = name
+        loadMoreCharacters()
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -99,7 +100,15 @@ extension MainViewModel: MainViewModelProtocol {
 }
 
 private extension MainViewModel {
-    func fetchMoreCharacters(usingCache: Bool) {
+    func loadMoreCharacters() {
+        if let searchString = searchString {
+            searchCharacters()
+        } else {
+            fetchMoreCharacters()
+        }
+    }
+
+    func fetchMoreCharacters() {
         dataState = .loading
         view?.update(dataStatus: dataState)
         characterRepository.fetchMoreCharacters(
@@ -120,6 +129,44 @@ private extension MainViewModel {
                 // Refresh view
                 self?.view?.reloadCollection()
                 let dataState = response.1 ? NetworkingViewModel.DataState.cached : NetworkingViewModel.DataState.idle
+                self?.dataState = dataState
+                self?.view?.update(dataStatus: dataState)
+            case .failure(let error):
+                self?.view?.show(error: error.localizedError)
+                self?.dataState = .idle
+                self?.view?.update(dataStatus: .idle)
+            }
+        }
+    }
+
+    func searchCharacters() {
+        guard let searchString = searchString else { return }
+
+        dataState = .loading
+        view?.update(dataStatus: dataState)
+        print("🌍 Search caracters. Page info: \(currentPageInfo)")
+        networkingService.request(
+            endpoint: .searchCaracter(name: searchString, pageInfo: currentPageInfo),
+            handlerQueue: .main
+        ) { [weak self] (result: Result<CharactersResponse, NetworkingError>) in
+            switch result {
+            case .success(let response):
+                // Update page info
+                self?.currentPageInfo = PageInfo(
+                    offset: response.data.offset,
+                    limit: response.data.limit,
+                    total: response.data.total,
+                    count: response.data.count
+                )
+                // Update models
+                if response.data.offset == 0 {
+                    self?.characters = response.data.results
+                } else {
+                    self?.characters.append(contentsOf: response.data.results)
+                }
+                // Refresh view
+                self?.view?.reloadCollection()
+                let dataState = NetworkingViewModel.DataState.idle
                 self?.dataState = dataState
                 self?.view?.update(dataStatus: dataState)
             case .failure(let error):
