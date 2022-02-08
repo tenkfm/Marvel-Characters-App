@@ -31,7 +31,6 @@ final class MainViewModel: PageViewModel {
 
 extension MainViewModel: MainViewModelProtocol {
     func fetchCharacters() {
-        characterRepository.resetCache()
         resetPageInfo()
         characters = []
         view?.reloadCollection()
@@ -101,7 +100,7 @@ extension MainViewModel: MainViewModelProtocol {
 
 private extension MainViewModel {
     func loadMoreCharacters() {
-        if let searchString = searchString {
+        if searchString != nil {
             searchCharacters()
         } else {
             fetchMoreCharacters()
@@ -114,7 +113,6 @@ private extension MainViewModel {
         characterRepository.fetchMoreCharacters(
             currentPageInfo: currentPageInfo
         ) { [weak self] result in
-
             switch result {
             case .success(let response):
                 // Update page info

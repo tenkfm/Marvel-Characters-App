@@ -1,4 +1,5 @@
 import Foundation
+
 enum NetworkingError: Error {
     case invalidUrl
     case noDataAvailable

@@ -23,7 +23,7 @@ final class CharacterRepository {
 
 extension CharacterRepository: CharacterRepositoryProtocol {
     func resetCache() {
-
+        coreDataService.reset()
     }
 
     private func fetchFromCache() -> [Character] {
