@@ -10,7 +10,7 @@ final class CharactersNetworkingServiceMock: NetworkingServiceProtocol {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let jsonData: Data
             guard let filePath = Bundle(for: type(of: self)).path(forResource: "CharactersResponse", ofType: "json"),
-                  let fileUrl = URL(string: filePath) else {
+                  let fileUrl = URL(string: "file://\(filePath)") else {
                       handler(.failure(.invalidUrl))
                       return
                   }

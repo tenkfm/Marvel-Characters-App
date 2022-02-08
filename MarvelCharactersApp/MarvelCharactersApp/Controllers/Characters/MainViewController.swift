@@ -77,6 +77,11 @@ private extension MainViewController {
         configureSubviews()
         configureConstraints()
         configureDependencies()
+        configureAccessibility()
+    }
+
+    func configureAccessibility() {
+        collectionView.accessibilityIdentifier = "CharactersCollectionView"
     }
 
     func configureStyling() {
